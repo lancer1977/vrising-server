@@ -5,7 +5,7 @@ if [ ! -e "./steaminstalled.txt" ]; then
     touch ./steaminstalled.txt
 fi
 
-rm -r /tmp/.X0-lock
+rm -r /tmp/.X1-lock
 
 cd /root/.wine/drive_c/VRisingServer/
 Xvfb :1 -screen 0 800x600x24 &
