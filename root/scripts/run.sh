@@ -1,9 +1,7 @@
 #!/bin/sh
 cd /steamcmd
-if [ ! -e "./steaminstalled.txt" ]; then
-    ./steamcmd.sh +force_install_dir "/root/.wine/drive_c/VRisingServer/" +login anonymous +app_update 1829350 validate +quit
-    touch ./steaminstalled.txt
-fi
+
+./steamcmd.sh +force_install_dir "/root/.wine/drive_c/VRisingServer/" +login anonymous +app_update 1829350 validate +quit
 
 rm -r /tmp/.X1-lock
 
