@@ -21,5 +21,5 @@ RUN mkdir /tmp/.X11-unix && chmod 1777 /tmp/.X11-unix
 
 EXPOSE 27015/udp
 EXPOSE 27016/udp
-run ln  /root/.wine/drive_c/users/root/AppData/LocalLow/Stunlock Studios/VRisingServer /mnt/
+RUN ln  '/root/.wine/drive_c/users/root/AppData/LocalLow/Stunlock Studios/VRisingServer' /mnt/
 CMD ./run.sh
