@@ -1,0 +1,43 @@
+FROM ubuntu:18.04
+ENV USERNAME=vrising
+ARG DEBIAN_FRONTEND="noninteractive"
+ARG PGID=1000
+ARG PUID=1000
+RUN groupadd --gid $PGID $vrising
+RUN useradd --create-home --shell /bin/bash --no-user-group --gid $PGID --uid $PUID vrising
+RUN dpkg --add-architecture i386 \
+    && apt update \
+    && apt install -y wine64 wine32 curl unzip xvfb winetricks tar winbind tzdata
+RUN mkdir /tmp/.X11-unix && chmod $PGID /tmp/.X11-unix
+
+USER vrising
+
+RUN mkdir -p /home/vrising/.wine/drive_c/users/vrising/AppData/LocalLow/'Stunlock Studios'/VRisingServer/Settings \
+    && mkdir /steamcmd \
+    && cd /steamcmd \
+    && curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar xz \
+    && mkdir -p /home/vrising/.wine/drive_c/VRisingServer/ \
+    && cd /steamcmd
+
+COPY root /home/vrising
+#COPY settings /root/.wine/drive_c/users/root/AppData/LocalLow/'Stunlock Studios'/VRisingServer/Settings
+#RUN ln -s /root/.wine/drive_c/users/root/AppData/LocalLow/'Stunlock Studios'/VRisingServer /mnt/
+WORKDIR /home/vrising
+
+
+RUN chmod +x ./run.sh
+
+EXPOSE 9876/udp
+EXPOSE 9877/udp
+RUN winetricks atmlib 
+RUN winetricks corefonts 
+#RUN winetricks vcrun2008 
+RUN winetricks vcrun2010 
+RUN winetricks vcrun2012 
+RUN winetricks fontsmooth-rgb 
+RUN winetricks gecko 
+RUN winetricks msxml3 
+RUN winetricks msxml6
+#gdiplus
+#winetricks atmlib corefonts gdiplus msxml3 msxml6 vcrun2008 vcrun2010 vcrun2012 fontsmooth-rgb gecko
+CMD ./run.sh
