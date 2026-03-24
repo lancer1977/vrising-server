@@ -79,3 +79,9 @@ docker-compose restart
 For detailed architecture and analysis, see the vault documentation:
 
 📁 [V Rising Server Docs](https://github.com/lancer1977/polyhydra-code/tree/main/04-docs/repos/vrising-server)
+
+
+## 📖 Documentation
+Detailed documentation can be found in the following sections:
+- [Feature Index](./docs/features/README.md)
+- [Core Capabilities](./docs/features/core-capabilities.md)
