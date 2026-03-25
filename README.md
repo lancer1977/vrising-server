@@ -28,21 +28,43 @@ This repo contains a Dockerized dedicated server for V Rising, a vampire surviva
 
 ## Volume Mounts
 
-The following paths are mounted from the host:
+The server uses environment variables for flexible path configuration. By default, data is stored in `./data/`:
 
-| Container Path | Host Path | Purpose |
-|----------------|-----------|---------|
-| `/root/.wine/.../VRisingServer/Saves` | `./saves` | World save data |
-| `/root/.wine/.../VRisingServer/Settings` | `./settings` | Server configuration |
+| Container Path | Default Host Path | Purpose |
+|----------------|-------------------|---------|
+| `/root/.wine/.../VRisingServer/Saves` | `./data/saves` | World save data |
+| `/root/.wine/.../VRisingServer/Settings` | `./data/settings` | Server configuration |
 
 ### Customizing Volume Paths
 
-To customize mount paths, edit the `volumes` section in `docker-compose.yml`:
+Create a `.env` file (copy from `.env.example`) to customize paths:
 
-```yaml
-volumes:
-  - /your/custom/saves:/root/.wine/drive_c/users/root/AppData/LocalLow/Stunlock Studios/VRisingServer/Saves
-  - /your/custom/settings:/root/.wine/drive_c/users/root/AppData/LocalLow/Stunlock Studios/VRisingServer/Settings/
+```bash
+# Copy example config
+cp .env.example .env
+
+# Edit with your preferred paths
+nano .env
+```
+
+Environment variables:
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `VRISING_DATA_DIR` | `./data/saves` | World save data directory |
+| `VRISING_SETTINGS_DIR` | `./data/settings` | Server configuration directory |
+
+Example `.env` for custom paths:
+
+```env
+VRISING_DATA_DIR=/mnt/games/vrising/saves
+VRISING_SETTINGS_DIR=/mnt/games/vrising/settings
+```
+
+**Note:** Ensure the host directories exist before starting the container:
+
+```bash
+mkdir -p ./data/saves ./data/settings
 ```
 
 ## Ports
