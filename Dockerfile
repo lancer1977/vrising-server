@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 VOLUME ["/mnt/vrising/server", "/mnt/vrising/persistentdata"]
 ENV USERNAME=steam
 ARG DEBIAN_FRONTEND="noninteractive"
