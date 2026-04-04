@@ -107,3 +107,6 @@ For detailed architecture and analysis, see the vault documentation:
 Detailed documentation can be found in the following sections:
 - [Feature Index](./docs/features/README.md)
 - [Core Capabilities](./docs/features/core-capabilities.md)
+## Quality Goal
+
+Non-UI and non-web library code should generally aim for 80%+ unit test coverage. When modifying shared/core libraries, prefer adding or updating tests as part of the change.
