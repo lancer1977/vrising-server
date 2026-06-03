@@ -11,14 +11,19 @@ tags: [documentation, vrising-server]
 
 # Feature Index
 
-This directory documents all features and roadmap items. All state is now tracked in front matter.
+This directory documents the stable, user-facing capabilities of `vrising-server`. State is tracked in front matter so the index stays lightweight.
 
-## Core Features (Existing Functionality)
+## Server / Deployment Features
+
+- [V Rising Dedicated Server](./v-rising-dedicated-server.md) - the primary Dockerized server packaging and runtime contract.
+- [Core Capabilities](./core-capabilities.md) - shared automation and containerization capabilities.
+- [ServerGameSettings.json PvP Rules, Rates, Limits](./servergamesettings-json-pvp-rules-rates-limits.md) - the gameplay tuning contract exposed through configuration.
+
+## Existing Sub-modules
 
 - [Sub-module: settings](./sub-module-settings.md)
 - [Sub-module: scripts](./sub-module-scripts.md)
 - [Sub-module: library](./sub-module-library.md)
-
 
 ## Beyond the App
 

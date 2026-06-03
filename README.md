@@ -2,6 +2,15 @@
 
 Dockerized V Rising game server for homelab deployment.
 
+## Tags
+
+- game
+- vrising-server
+- game-server
+- server
+- docker
+- docs
+
 ## Quick Start
 
 ```bash
@@ -15,6 +24,12 @@ docker-compose up -d
 ## Purpose
 
 This repo contains a Dockerized dedicated server for V Rising, a vampire survival MMO. The server runs in a Wine container and is managed via Docker Compose for easy deployment and updates.
+
+## Project Docs
+
+- [Docs Home](./docs/README.md)
+- [Feature Index](./docs/features/README.md)
+- [Roadmaps](./docs/roadmaps/README.md)
 
 ## Environment Variables
 

@@ -1,5 +1,7 @@
 # vrising-server portfolio roadmap
 
+This lightweight roadmap captures the next validation and documentation steps for the repo's deployment pattern.
+
 ## 90-day evidence snapshot
 - Commits (90 days): 7
 - Files changed (90 days): 18
