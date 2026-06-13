@@ -25,6 +25,19 @@ docker-compose up -d
 
 This repo contains a Dockerized dedicated server for V Rising, a vampire survival MMO. The server runs in a Wine container and is managed via Docker Compose for easy deployment and updates.
 
+## V1 baseline
+
+- The Compose-first deployment path is documented.
+- Server name, world, port, and volume settings are exposed through environment variables.
+- V1 means a new operator can stand the server up and understand where config lives.
+
+## Current shape
+
+- Dockerized dedicated server image and Compose deployment path
+- environment variable configuration for server name, world, and ports
+- volume mount guidance for saves and settings
+- project docs for features, roadmaps, and operational notes
+
 ## Project Docs
 
 - [Docs Home](./docs/README.md)
