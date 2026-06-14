@@ -2,6 +2,10 @@
 
 Dockerized V Rising game server for homelab deployment.
 
+Runtime lane for the V Rising dedicated server image.
+
+First read: [docs/README.md](./docs/README.md).
+
 ## Infra Goal Path
 
 This repo is the deployable V Rising runtime lane. It should stay explicit about

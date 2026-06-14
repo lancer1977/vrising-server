@@ -54,3 +54,4 @@ Follow the closest `AGENTS.md` first, then the workspace-root `AGENTS.md` when t
 ## Repo Notes
 
 - Add repo-specific commands, constraints, and validation steps below this line.
+- `DS-vrising` is runtime-only; start with `docs/README.md` and keep support-home ownership in `../vrising-support`.

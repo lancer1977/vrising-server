@@ -4,6 +4,8 @@ This docs tree keeps the V Rising server runtime boundary explicit and anchors
 the repo to the shared infra ladder from `Api.GameServerInterop`. `V1` lives in
 `../vrising-support`; this tree stays on the runtime lane.
 
+Start here for routing; the paired support home lives in `../vrising-support`.
+
 For shared layer wording and the repo fill-in format, use the canonical
 template in `../Api.GameServerInterop/docs/roadmap/v-layer-goals-template.md`.
 

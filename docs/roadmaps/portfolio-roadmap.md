@@ -1,5 +1,7 @@
 # vrising-server portfolio roadmap
 
+Use this roadmap for the runtime lane only. The paired support home is `../vrising-support`.
+
 ## Goal Path
 
 - `V0`: bootable Dockerized server, support/readback lane, deployment, and smoke checks
