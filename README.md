@@ -2,6 +2,36 @@
 
 Dockerized V Rising game server for homelab deployment.
 
+## Infra Goal Path
+
+This repo is the deployable V Rising runtime lane. It should stay explicit about
+the `V0` infra baseline and the `V1` support-home boundary in
+`../vrising-support` so the server can be reviewed folder by folder without
+redefining the shape each time.
+
+- `V0`: bootable Dockerized server, support/readback path, deployment lane, and
+  smoke checks that prove the server comes up
+- `V1`: canonical support home lives in `../vrising-support`; this repo stays
+  on the runtime lane
+
+The shared seam and ladder are defined in `Api.GameServerInterop`; this repo
+keeps the V Rising server/runtime boundary and Docker bring-up behavior.
+
+For the shared ladder and fill-in format, use the canonical V-layer template in
+`../Api.GameServerInterop/docs/roadmap/v-layer-goals-template.md`.
+
+## Per-Repo Fill-In
+
+- repo name: `DS-vrising`
+- runtime sibling: none; this repo is the runtime lane
+- support-home boundary: support home lives in `../vrising-support`; keep this repo runtime-only
+- local build command: `docker build -t vrising-server:latest .`
+- local test/smoke command: `docker-compose up -d && docker logs -f vrising-server`
+- caveats: do not fold support-home contracts or operator policy into the runtime lane
+
+## 252 Deployment Status
+
+- 252 deployment status: not observed on 192.168.0.252 as of 2026-06-13; see [252 Deployment Status](../Api.GameServerInterop/docs/roadmap/252-deployment-status.md)
 ## Tags
 
 - game
@@ -131,10 +161,11 @@ For detailed architecture and analysis, see the vault documentation:
 📁 [V Rising Server Docs](https://github.com/lancer1977/polyhydra-code/tree/main/04-docs/repos/vrising-server)
 
 
-## 📖 Documentation
-Detailed documentation can be found in the following sections:
+## Documentation
+
 - [Feature Index](./docs/features/README.md)
 - [Core Capabilities](./docs/features/core-capabilities.md)
+
 ## Quality Goal
 
 Non-UI and non-web library code should generally aim for 80%+ unit test coverage. When modifying shared/core libraries, prefer adding or updating tests as part of the change.

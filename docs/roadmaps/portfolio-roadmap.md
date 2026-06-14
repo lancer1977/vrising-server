@@ -1,5 +1,13 @@
 # vrising-server portfolio roadmap
 
+## Goal Path
+
+- `V0`: bootable Dockerized server, support/readback lane, deployment, and smoke checks
+- `V1`: canonical support home lives in `../vrising-support`
+
+This repo should stay aligned with the shared infra seam in `Api.GameServerInterop`
+and keep reusable support contracts in `../vrising-support`.
+
 This lightweight roadmap captures the next validation and documentation steps for the repo's deployment pattern.
 
 ## 90-day evidence snapshot

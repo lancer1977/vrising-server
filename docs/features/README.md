@@ -13,6 +13,11 @@ tags: [documentation, vrising-server]
 
 This directory documents the stable, user-facing capabilities of `vrising-server`. State is tracked in front matter so the index stays lightweight.
 
+## Infra Shape
+
+- `V0`: Dockerized server, support/readback boundary, deployment lane, and smoke checks
+- `V1`: canonical support home lives in `../vrising-support`
+
 ## Server / Deployment Features
 
 - [V Rising Dedicated Server](./v-rising-dedicated-server.md) - the primary Dockerized server packaging and runtime contract.
@@ -27,4 +32,4 @@ This directory documents the stable, user-facing capabilities of `vrising-server
 
 ## Beyond the App
 
-- Shared utilities and local development tools.
+- Shared utilities and local development tools, while reusable support contracts stay in `../vrising-support`.
