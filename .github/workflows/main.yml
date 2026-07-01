@@ -24,6 +24,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Validate runtime lane
+        run: bash scripts/validate.sh
+
       - name: Build images and push to Docker hub
         id: docker_build
         uses: docker/build-push-action@v3

@@ -76,6 +76,7 @@ This repo contains a Dockerized dedicated server for V Rising, a vampire surviva
 
 - [Docs Home](./docs/README.md)
 - [Feature Index](./docs/features/README.md)
+- [Version Coverage Map](./docs/features/version-coverage-map.md)
 - [Roadmaps](./docs/roadmaps/README.md)
 
 ## Environment Variables
@@ -168,6 +169,7 @@ For detailed architecture and analysis, see the vault documentation:
 ## Documentation
 
 - [Feature Index](./docs/features/README.md)
+- [Version Coverage Map](./docs/features/version-coverage-map.md)
 - [Core Capabilities](./docs/features/core-capabilities.md)
 
 ## Quality Goal

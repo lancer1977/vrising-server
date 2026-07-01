@@ -30,6 +30,7 @@ template in `../Api.GameServerInterop/docs/roadmap/v-layer-goals-template.md`.
 ## Features
 
 - [Feature Index](features/README.md) - catalog of the repo's documented capabilities and implementation notes.
+- [Version Coverage Map](features/version-coverage-map.md) - runtime-lane V-layer tags.
 - [V Rising Dedicated Server](features/v-rising-dedicated-server.md) - the inferred primary feature for the server package.
 - [Core Capabilities](features/core-capabilities.md) - shared automation and containerization capabilities.
 - [ServerGameSettings.json PvP Rules, Rates, Limits](features/servergamesettings-json-pvp-rules-rates-limits.md) - the gameplay tuning contract exposed by configuration.

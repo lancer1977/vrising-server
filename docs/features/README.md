@@ -23,6 +23,7 @@ This directory documents the stable, user-facing capabilities of `vrising-server
 - [V Rising Dedicated Server](./v-rising-dedicated-server.md) - the primary Dockerized server packaging and runtime contract.
 - [Core Capabilities](./core-capabilities.md) - shared automation and containerization capabilities.
 - [ServerGameSettings.json PvP Rules, Rates, Limits](./servergamesettings-json-pvp-rules-rates-limits.md) - the gameplay tuning contract exposed through configuration.
+- [Version Coverage Map](./version-coverage-map.md)
 
 ## Existing Sub-modules
 
