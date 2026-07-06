@@ -1,0 +1,15 @@
+{
+  "lastUpdated": "2026-07-06",
+  "name": "DS-vrising",
+  "repoLabel": "lancer1977/vrising-server",
+  "schemaVersion": 1,
+  "slug": "ds-vrising",
+  "status": "active",
+  "summary": "Dockerized V Rising game server for homelab deployment.",
+  "tags": [
+    "game-support",
+    "shell",
+    "docs",
+    "docker"
+  ]
+}

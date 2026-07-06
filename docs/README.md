@@ -15,6 +15,22 @@ template in `../Api.GameServerInterop/docs/roadmap/v-layer-goals-template.md`.
   deployment lane, and smoke checks
 - `V1`: canonical support home lives in `../vrising-support`
 
+## Runtime-Lane Scope
+
+- Boot proof: build the image and start the Compose service in a suitable
+  runtime environment.
+- Lifecycle proof: start, restart, stop, and observe the `vrising-server`
+  container without adding gameplay command authority here.
+- Config proof: validate server name, world, ports, save/settings mounts, and
+  generated `VRisingServer.exe` arguments from the runtime scripts and Compose
+  files.
+- Logs proof: use `docker logs -f vrising-server` as the runtime readback lane.
+- Readback proof: keep this repo limited to container/server process state,
+  ports, logs, and file-backed configuration evidence.
+- Delegation: V2-V5 support-sidecar contracts, public/operator policy,
+  approval, audit, rollback, and gameplay mutation belong in
+  `../vrising-support` and shared interop packages.
+
 ## Per-Repo Fill-In
 
 - repo name: `DS-vrising`
