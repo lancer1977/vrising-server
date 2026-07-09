@@ -1,12 +1,35 @@
-name: change-me
-repo_root: change-me
+schema: 1
+project:
+  name: DS-vrising
+  kind: docker-game-server
+  owner: lancer1977
 
-languages: []
-frameworks: []
+languages:
+  - shell
+  - dockerfile
+  - json
 
-ci:
-  build: []
-  test: []
+frameworks:
+  - docker
+  - docker-compose
+  - steamcmd
+  - wine
+  - vrising
+
+validation:
+  validate: bash scripts/validate.sh
+  docker_build: docker build -t vrising-server:latest .
+  compose_config: docker compose -f docker-compose.yml config --quiet
+
+tracking:
+  primary: repo-local
+  current_work: 00_agile/dashboard.md
+
+docs:
+  index: docs/README.md
+  features: docs/features/README.md
+  version_coverage: docs/features/version-coverage-map.md
+  roadmap: docs/roadmaps/README.md
 
 devstudio:
   runtime_model: three-agent
