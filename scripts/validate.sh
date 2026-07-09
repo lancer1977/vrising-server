@@ -32,7 +32,13 @@ grep -q "app_update 1829350 validate" scripts/run.sh
 grep -q "VRisingServer.exe" scripts/run.sh
 grep -q "SERVERNAME" README.md scripts/run.sh
 grep -q "GAMEPORT" README.md scripts/run.sh
+grep -q 'set -- "$settings" -serverName "$SERVERNAME"' scripts/run.sh
+grep -q 'set -- "$@" -gamePort "$GAMEPORT"' scripts/run.sh
+grep -q 'set -- "$@" -queryPort "$QUERYPORT"' scripts/run.sh
+grep -q 'rm -f /tmp/.X0-lock' scripts/run.sh
 grep -q "EXPOSE 9876/udp" Dockerfile
+
+sh -n scripts/run.sh
 
 docker compose -f docker-compose.yml config --quiet
 docker compose -f deploy/docker-compose.local.yml config --quiet
