@@ -5,40 +5,76 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 concurrency:
-  group: vrising-server-main-${{ github.event.pull_request.number || github.ref }}
+  group: vrising-docker-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.run_id }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup docker build
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v3
+
+      # Validation runs before any registry login. Previously the login step
+      # came first and ran unconditionally, so a missing/invalid credential
+      # failed the job before the runtime lane was ever validated — and
+      # attempted a registry login on every pull request, including forks.
+      - name: Validate runtime lane
+        run: bash scripts/validate.sh
 
       - name: Login Dockerhub
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: docker/login-action@v1
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Validate runtime lane
-        run: bash scripts/validate.sh
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          # This fork previously pushed to `scumbug/vrising-server`, the
+          # upstream author's namespace, which it cannot write to.
+          images: |
+            lancer1977/vrising-server
+          tags: |
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+            type=sha
+          labels: |
+            org.opencontainers.image.title=vrising-server
+            org.opencontainers.image.description=V Rising Dedicated Server
+            org.opencontainers.image.url=https://github.com/lancer1977/vrising-server
+            org.opencontainers.image.source=https://github.com/lancer1977/vrising-server
+            org.opencontainers.image.version=${{ github.sha }}
+            org.opencontainers.image.revision=${{ github.sha }}
 
       - name: Build images and push to Docker hub
         id: docker_build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: ./
-          tags: scumbug/vrising-server:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Publish image digest to the run summary
+        if: github.event_name != 'pull_request'
+        run: |
+          echo "### Published image" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          echo "digest: ${{ steps.docker_build.outputs.digest }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "tags:" >> "$GITHUB_STEP_SUMMARY"
+          echo "${{ steps.meta.outputs.tags }}" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
