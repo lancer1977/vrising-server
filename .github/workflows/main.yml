@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      packages: write
 
     steps:
       - name: Checkout code
@@ -32,12 +33,15 @@ jobs:
       - name: Validate runtime lane
         run: bash scripts/validate.sh
 
-      - name: Login Dockerhub
+      # GHCR with the Actions-builtin GITHUB_TOKEN — no secret needs to be
+      # provisioned in this repository.
+      - name: Log in to GitHub Container Registry
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Docker meta
         id: meta
@@ -46,7 +50,7 @@ jobs:
           # This fork previously pushed to `scumbug/vrising-server`, the
           # upstream author's namespace, which it cannot write to.
           images: |
-            lancer1977/vrising-server
+            ghcr.io/lancer1977/vrising-server
           tags: |
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
             type=sha
