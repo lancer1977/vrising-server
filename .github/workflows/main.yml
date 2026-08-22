@@ -41,14 +41,13 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ github.token }}
 
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
         with:
-          # This fork previously pushed to `scumbug/vrising-server`, the
-          # upstream author's namespace, which it cannot write to.
+          # Publish this fork's image to its own GHCR namespace.
           images: |
             ghcr.io/lancer1977/vrising-server
           tags: |
@@ -62,7 +61,7 @@ jobs:
             org.opencontainers.image.version=${{ github.sha }}
             org.opencontainers.image.revision=${{ github.sha }}
 
-      - name: Build images and push to Docker hub
+      - name: Build images and push to GHCR
         id: docker_build
         uses: docker/build-push-action@v6
         with:
